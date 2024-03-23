@@ -24,12 +24,14 @@ public class AccountController {
     public ResponseEntity<List<Account>> getAllAccounts(){
         return new ResponseEntity<>(accountService.getAllAccounts(),HttpStatus.OK);
     }
-    @PutMapping("/update")
-    public ResponseEntity<String> updateAccount(Long id, Account acc){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateAccount(@PathVariable Long id,@RequestBody Account acc){
+        accountService.updateAccount(id,acc);
         return new ResponseEntity<>("the account with id = "+id+" updated successfully",HttpStatus.OK);
     }
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteAccount(Long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteAccount(@PathVariable Long id){
+        accountService.deleteAccount(id);
         return new ResponseEntity<>("the account with id = "+id+" deleted successfully",HttpStatus.NO_CONTENT);
     }
 }

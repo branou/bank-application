@@ -3,8 +3,6 @@ package dev.himbra.bankapplication.service;
 import dev.himbra.bankapplication.entity.Account;
 import dev.himbra.bankapplication.repository.AccountRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,16 +26,20 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void deleteAccount(Long id) {
-        Optional<Account> acc = accountRepo.findById(id);
-        Account account = acc.get();
+        Account account = getAccountById(id);
         accountRepo.delete(account);
     }
 
     @Override
     public void updateAccount(Long id, Account acc) {
-        Optional<Account> accToUpdate = accountRepo.findById(id);
-        Account account = accToUpdate.get();
+        Account account = getAccountById(id);
         account.setBalance(acc.getBalance());
         account.setAccountHolderName(acc.getAccountHolderName());
+    }
+
+    @Override
+    public Account getAccountById(Long id) {
+        Account acc=accountRepo.findById(id).orElseThrow(()-> new RuntimeException("account doesn't exit!!"));
+        return acc;
     }
 }
