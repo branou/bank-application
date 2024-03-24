@@ -1,6 +1,7 @@
 package dev.himbra.bankapplication.service;
 
 import dev.himbra.bankapplication.entity.Account;
+import dev.himbra.bankapplication.exceptions.ResourceNotFoundException;
 import dev.himbra.bankapplication.repository.AccountRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account getAccountById(Long id) {
-        Account acc=accountRepo.findById(id).orElseThrow(()-> new RuntimeException("account doesn't exit!!"));
+        Account acc=accountRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("account doesn't exist!!"));
         return acc;
     }
 }
