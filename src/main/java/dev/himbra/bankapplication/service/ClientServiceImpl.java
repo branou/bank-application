@@ -6,11 +6,13 @@ import dev.himbra.bankapplication.entity.Client;
 import dev.himbra.bankapplication.exceptions.ResourceNotFoundException;
 import dev.himbra.bankapplication.repository.ClientRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
+@Service
 public class ClientServiceImpl implements ClientService{
     private ClientRepository clientRepo;
     @Override
@@ -20,7 +22,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public List<Clientdto> getAllClients() {
-        return clientRepo.findAll().stream().map(client -> ClientMapper.maptoClient(client)).collect(Collectors.toList());
+        return clientRepo.findAll().stream().map(client -> ClientMapper.maptoClientdto(client)).collect(Collectors.toList());
     }
 
     @Override

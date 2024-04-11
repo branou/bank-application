@@ -1,5 +1,6 @@
 package dev.himbra.bankapplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor @Setter @Getter
 public class Client {
-    @Column(name="client_id",nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +23,7 @@ public class Client {
     private String password;
     @Column(name="email",nullable = false)
     private String email;
-
-
+    @JsonIgnore
+    @OneToOne(mappedBy="client")
+    private Account acc;
 }

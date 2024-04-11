@@ -1,7 +1,6 @@
 package dev.himbra.bankapplication.service;
 
 import dev.himbra.bankapplication.dto.Clientdto;
-import dev.himbra.bankapplication.entity.Account;
 import dev.himbra.bankapplication.entity.Client;
 
 import java.util.List;

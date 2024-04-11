@@ -1,11 +1,14 @@
 package dev.himbra.bankapplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.WebProperties;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="accounts")
@@ -18,4 +21,7 @@ public class Account {
     @Column(name="account_holder_name", nullable = false)
     private String accountHolderName;
     private double balance;
+    @OneToOne
+    @JoinColumn(name="client_Id")
+    private Client client;
 }

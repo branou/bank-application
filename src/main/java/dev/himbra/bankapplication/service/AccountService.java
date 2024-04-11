@@ -11,4 +11,5 @@ public interface AccountService {
     public void deleteAccount(Long id);
     public void updateAccount(Long id,Account acc);
     public Account getAccountById(Long id);
+    public void affectClient(Long clientId,Long accountId);
 }
