@@ -2,10 +2,7 @@ package dev.himbra.bankapplication.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,15 +10,20 @@ import java.util.Set;
 @Entity
 @Table(name="accounts")
 @NoArgsConstructor
-@AllArgsConstructor @Getter @Setter
+@AllArgsConstructor @Getter @Setter @Builder
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column(name="account_holder_name", nullable = false)
-    private String accountHolderName;
+
     private double balance;
-    @OneToOne
+
+    private String accountNumber;
+
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
+
+    @ManyToOne
     @JoinColumn(name="client_Id")
     private Client client;
 }
