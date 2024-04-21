@@ -37,7 +37,9 @@ public class AccountServiceImpl implements AccountService {
     public void updateAccount(Long id, Account acc) {
         Account account = getAccountById(id);
         account.setBalance(acc.getBalance());
-        account.setAccountHolderName(acc.getAccountHolderName());
+        account.setAccountNumber(acc.getAccountNumber());
+        account.setAccountType(acc.getAccountType());
+        account.setClient(acc.getClient());
         accountRepo.save(account);
     }
 

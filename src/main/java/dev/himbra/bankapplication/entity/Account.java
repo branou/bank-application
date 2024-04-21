@@ -18,7 +18,7 @@ public class Account {
 
     private double balance;
 
-    private String accountNumber;
+    private double accountNumber;
 
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
